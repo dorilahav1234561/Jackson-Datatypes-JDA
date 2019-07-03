@@ -43,5 +43,9 @@ public class RoleDeserializer extends StdDeserializer<Role> {
 		
 		return role;
 	}
-	
+
+	@Override
+	public Role getNullValue() {
+		return new EmptyRole();
+	}
 }
