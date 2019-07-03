@@ -1,5 +1,3 @@
 package net.voigon.jackson.jda.empty;
 
-public interface Empty {
-
-}
+public interface Empty {}
