@@ -5,11 +5,15 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Category;
+import net.voigon.jackson.jda.empty.Empty;
 import net.voigon.jackson.jda.empty.EmptyCategory;
 
 public class CategoryDeserializer extends StdDeserializer<Category> {
@@ -18,7 +22,7 @@ public class CategoryDeserializer extends StdDeserializer<Category> {
 	
 	private JDA
 			bot;
-	
+
 	protected CategoryDeserializer(JDA bot) {
 		super(Category.class);
 		this.bot = bot;
@@ -41,5 +45,10 @@ public class CategoryDeserializer extends StdDeserializer<Category> {
 		}
 		
 		return category;
+	}
+
+	@Override
+	public Category getNullValue() {
+		return new EmptyCategory();
 	}
 }
