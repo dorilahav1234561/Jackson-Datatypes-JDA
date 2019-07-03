@@ -1,6 +1,7 @@
 package net.voigon.jackson.jda.deser;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,20 +11,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.User;
+import net.voigon.jackson.jda.JDAModule;
 import net.voigon.jackson.jda.empty.EmptyMember;
 
 public class MemberDeserializer extends StdDeserializer<Member> {
 
 	private static final long serialVersionUID = -4517803555826355356L;
 	
-	private JDA
-			bot;
+	private JDAModule
+			module;
 
-	protected MemberDeserializer(JDA bot) {
+	protected MemberDeserializer(JDAModule module) {
 		super(Member.class);
 		
-		this.bot = bot;
+		this.module = module;
 	}
 
 	@Override
@@ -33,7 +37,7 @@ public class MemberDeserializer extends StdDeserializer<Member> {
 		
 		Member member = null;
 		try {
-			member = bot.getGuildById(node.get("guild_id").asText()).getMemberById(node.get("id").asText());
+			member = module.getBot().getGuildById(node.get("guild_id").asText()).getMemberById(node.get("id").asText());
 			
 			if (member == null)
 				member = new EmptyMember();
@@ -49,4 +53,5 @@ public class MemberDeserializer extends StdDeserializer<Member> {
 	public Member getNullValue() {
 		return new EmptyMember();
 	}
+
 }
