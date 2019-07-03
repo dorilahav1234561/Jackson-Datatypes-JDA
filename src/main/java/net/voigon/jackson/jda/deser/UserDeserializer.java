@@ -48,4 +48,8 @@ public class UserDeserializer extends StdDeserializer<User> {
 		return user;
 	}
 
+	@Override
+	public User getNullValue() {
+		return new EmptyUser();
+	}
 }
