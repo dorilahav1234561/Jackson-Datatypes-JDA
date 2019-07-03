@@ -47,4 +47,8 @@ public class TextChannelDeserializer extends StdDeserializer<TextChannel> {
 		return textChannel;
 	}
 
+	@Override
+	public TextChannel getNullValue() {
+		return new EmptyTextChannel();
+	}
 }
