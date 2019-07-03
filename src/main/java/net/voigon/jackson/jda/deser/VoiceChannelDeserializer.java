@@ -47,4 +47,8 @@ public class VoiceChannelDeserializer extends StdDeserializer<VoiceChannel> {
 		return voiceChannel;
 	}
 
+	@Override
+	public VoiceChannel getNullValue() {
+		return new EmptyVoiceChannel();
+	}
 }
