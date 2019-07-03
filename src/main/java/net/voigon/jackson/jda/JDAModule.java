@@ -30,7 +30,7 @@ public class JDAModule extends SimpleModule {
 		this.bot = jda;
 
 		setSerializers(new JDASerializers());
-		setDeserializers(new JDADeserializers(bot));
+		setDeserializers(new JDADeserializers(this));
 	}
 
 	public JDA getBot() {return this.bot;}
