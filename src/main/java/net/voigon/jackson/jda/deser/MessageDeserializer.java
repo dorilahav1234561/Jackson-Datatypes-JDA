@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -44,4 +45,8 @@ public class MessageDeserializer extends StdDeserializer<Message> {
 		return message;
 	}
 
+	@Override
+	public Message getNullValue() {
+		return new EmptyMessage();
+	}
 }
