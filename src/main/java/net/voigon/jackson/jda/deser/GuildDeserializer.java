@@ -46,4 +46,8 @@ public class GuildDeserializer extends StdDeserializer<Guild> {
 		return guild;
 	}
 
+	@Override
+	public Guild getNullValue() {
+		return new EmptyGuild();
+	}
 }
