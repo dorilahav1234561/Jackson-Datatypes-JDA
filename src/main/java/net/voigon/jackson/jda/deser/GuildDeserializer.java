@@ -34,8 +34,10 @@ public class GuildDeserializer extends StdDeserializer<Guild> {
 
 	@Override
 	public Guild deserialize(JsonParser jp, DeserializationContext dc) throws IOException, JsonProcessingException {
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
-		
+
 		Guild guild = null;
 		try {
 			guild = module.getBot().getGuildById(node.asText());

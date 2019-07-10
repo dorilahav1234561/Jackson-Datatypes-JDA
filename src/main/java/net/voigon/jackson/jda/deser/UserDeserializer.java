@@ -34,7 +34,8 @@ public class UserDeserializer extends StdDeserializer<User> {
 
 	@Override
 	public User deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-		
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
 		
 		User user = null;

@@ -28,7 +28,6 @@ public class MessageDeserializer extends StdDeserializer<Message> {
 
 	@Override
 	public Message deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-		
 		JsonNode node = jp.readValueAsTree();
 		
 		Message message = null;

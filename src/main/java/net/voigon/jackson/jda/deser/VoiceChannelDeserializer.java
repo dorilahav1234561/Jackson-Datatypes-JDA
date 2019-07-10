@@ -33,7 +33,8 @@ public class VoiceChannelDeserializer extends StdDeserializer<VoiceChannel> {
 
 	@Override
 	public VoiceChannel deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-		
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
 		
 		VoiceChannel voiceChannel = null;

@@ -34,6 +34,7 @@ public class CategoryDeserializer extends StdDeserializer<Category> {
 
 	@Override
 	public Category deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+		if (module.getBot() == null) return getNullValue();
 
 		JsonNode node = jp.readValueAsTree();
 		

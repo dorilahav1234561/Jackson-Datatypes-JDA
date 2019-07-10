@@ -31,7 +31,8 @@ public class RoleDeserializer extends StdDeserializer<Role> {
 
 	@Override
 	public Role deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-		
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
 		
 		Role role = null;

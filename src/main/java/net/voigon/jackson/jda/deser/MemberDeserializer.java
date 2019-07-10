@@ -32,7 +32,8 @@ public class MemberDeserializer extends StdDeserializer<Member> {
 
 	@Override
 	public Member deserialize(JsonParser jp, DeserializationContext dc) throws IOException, JsonProcessingException {
-		
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
 		
 		Member member = null;

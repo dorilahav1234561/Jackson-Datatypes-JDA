@@ -33,7 +33,8 @@ public class TextChannelDeserializer extends StdDeserializer<TextChannel> {
 
 	@Override
 	public TextChannel deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-		
+		if (module.getBot() == null) return getNullValue();
+
 		JsonNode node = jp.readValueAsTree();
 		
 		TextChannel textChannel = null;

@@ -37,6 +37,8 @@ public class MessageEmbedDeserializer extends StdDeserializer<MessageEmbed> {
 	@Override
 	public MessageEmbed deserialize(JsonParser p, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
+		if (getBot() == null) return null;
+
 		return new EntityBuilder(getBot()).createMessageEmbed(
 				new JSONObject(p.getCodec().<Map<?, ?>>readValue(p, new TypeReference<Map<?, ?>>() {})));
 	}

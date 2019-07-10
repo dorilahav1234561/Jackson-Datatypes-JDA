@@ -25,7 +25,7 @@ public class AuthorInfoDeserializer extends StdDeserializer<AuthorInfo> {
 	@Override
 	public AuthorInfo deserialize(JsonParser p, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
-		
+
 		JsonNode node = p.readValueAsTree();
 		JsonNode proxyIconUrl = node.get("proxyIconUrl");
 		
